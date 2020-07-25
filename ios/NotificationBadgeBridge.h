@@ -4,7 +4,6 @@
 
 #import <Foundation/Foundation.h>
 #import "RCTBridgeModule.h"
-#import "RCTEventEmitter.h"
 
 @interface NotificationBadgeBridge: NSObject
 @end

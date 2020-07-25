@@ -8,7 +8,6 @@
 
 #import "NotificationBadgeBridge.h"
 #import "RCTBridgeModule.h"
-#import "RCTEventEmitter.h"
 
 @interface RCT_EXTERN_MODULE(NotificationBadge, NSObject)
 
