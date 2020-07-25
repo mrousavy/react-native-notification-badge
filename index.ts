@@ -71,7 +71,7 @@ export function getNotificationBadgeSetting(): Promise<BadgeSetting> {
  * Asynchronously request the user to grant the specified permissions.
  * @param permissions The array of permissions to grant
  * @example
- * const granted = await requestNotificationPermissions(['alert' | 'badge' | 'sound'])
+ * const granted = await requestNotificationPermissions(['alert', 'badge', 'sound'])
  */
 export function requestNotificationPermissions(permissions: NotificationPermission[]): Promise<boolean> {
   if (Platform.OS === 'ios') {
