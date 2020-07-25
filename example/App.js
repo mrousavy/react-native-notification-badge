@@ -34,7 +34,7 @@ export default function App() {
   const loadPermissionStatus = useCallback(async () => {
     const _permissionStatus = await getNotificationBadgeSetting();
     setPermissionStatus(_permissionStatus);
-  });
+  }, []);
   const updateBadgeCount = useCallback(async () => {
     const number = parseInt(text, 10);
     if (typeof number === 'number' && !isNaN(number)) {
