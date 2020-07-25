@@ -2,9 +2,9 @@ import { NativeModules, Platform } from 'react-native';
 
 const { NotificationBadge } = NativeModules;
 
-export function setBadgeCount(badgeCount: number): void {
+export function setBadgeCount(badgeCount: number): Promise<void> {
   if (Platform.OS === 'ios') {
-    NotificationBadge.setBadgeCount(badgeCount);
+    return NotificationBadge.setBadgeCount(badgeCount);
   } else {
     throw new Error(`setBadgeCount is not supported on ${Platform.OS}!`)
   }
