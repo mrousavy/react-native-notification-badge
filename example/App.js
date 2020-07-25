@@ -8,33 +8,56 @@
  * https://github.com/facebook/react-native
  */
 
-import React, { Component } from 'react';
-import { Platform, StyleSheet, Text, View } from 'react-native';
-import NotificationBadge from 'react-native-notification-badge';
+import React, {useEffect, useState, useCallback} from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  TouchableNativeFeedback,
+} from 'react-native';
+import {getBadgeCount, setBadgeCount} from 'react-native-notification-badge';
 
-export default class App extends Component<{}> {
-  state = {
-    status: 'starting',
-    message: '--'
-  };
-  componentDidMount() {
-    NotificationBadge.sampleMethod('Testing', 123, (message) => {
-      this.setState({
-        status: 'native callback received',
-        message
-      });
-    });
-  }
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>☆NotificationBadge example☆</Text>
-        <Text style={styles.instructions}>STATUS: {this.state.status}</Text>
-        <Text style={styles.welcome}>☆NATIVE CALLBACK MESSAGE☆</Text>
-        <Text style={styles.instructions}>{this.state.message}</Text>
+export default function App() {
+  const [badgeCount, _setBadgeCount] = useState(undefined);
+  const [text, setText] = useState('');
+
+  const loadBadgeCount = useCallback(async () => {
+    const _badgeCount = await getBadgeCount();
+    _setBadgeCount(_badgeCount);
+  }, []);
+  const updateBadgeCount = useCallback(async () => {
+    const number = parseInt(text, 10);
+    if (typeof number === 'number' && !isNaN(number)) {
+      setBadgeCount(number);
+      setText('');
+    }
+    await loadBadgeCount();
+  }, [text, loadBadgeCount]);
+
+  useEffect(() => {
+    loadBadgeCount();
+  }, [loadBadgeCount]);
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.welcome}>NotificationBadge</Text>
+      <Text>Current Badge Count: {badgeCount}</Text>
+      <View style={styles.row}>
+        <TextInput
+          style={styles.textInput}
+          onChangeText={setText}
+          value={text}
+          placeholder={'Badge Count'}
+        />
+        <TouchableNativeFeedback
+          style={styles.button}
+          onPress={updateBadgeCount}>
+          <Text>Set</Text>
+        </TouchableNativeFeedback>
       </View>
-    );
-  }
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -49,9 +72,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  row: {
+    marginTop: 20,
+    flexDirection: 'row',
+    width: '50%',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+  },
+  textInput: {
+    fontSize: 16,
+  },
+  button: {
+    fontSize: 16,
   },
 });
