@@ -1,18 +1,16 @@
 {
   "name": "react-native-notification-badge",
   "title": "React Native Notification Badge",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A notification badge count manager for React Native",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "README.md",
-    "android/src",
-    "android/build.gradle",
     "ios/NotificationBadge.xcodeproj/project.pbxproj",
-    "ios/NotificationBadge.swift",
-    "ios/NotificationBadgeBridge.h",
-    "ios/NotificationBadgeBridge.m",
+    "ios/**/*.h",
+    "ios/**/*.m",
+    "ios/**/*.swift",
     "dist",
     "react-native-notification-badge.podspec"
   ],
