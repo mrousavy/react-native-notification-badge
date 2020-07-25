@@ -26,12 +26,57 @@ class NotificationBadge: NSObject {
 						execute()
 					}
 					return
+				} else {
+					onPermissionError(NSError(domain: "", code: 0, userInfo: ["message": "No error was thrown, but permission has not been granted."]))
+					return
 				}
 			}
 		} else {
 			DispatchQueue.main.async {
 				execute()
 			}
+		}
+	}
+	
+	@objc(getNotificationBadgeSetting:rejecter:)
+	func getNotificationBadgeSetting(resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
+		if #available(iOS 10.0, *) {
+			let center = UNUserNotificationCenter.current()
+			center.getNotificationSettings { (settings) in
+				switch (settings.badgeSetting) {
+				case .enabled:
+					resolve("enabled")
+					break
+				case .disabled:
+					resolve("disabled")
+					break
+				case .notSupported:
+					resolve("notSupported")
+					break
+				default:
+					resolve("unknown")
+					break
+				}
+			}
+		} else {
+			resolve("enabled")
+		}
+	}
+	
+	@objc(requestNotificationPermissions:resolver:rejecter:)
+	func requestNotificationPermissions(_ permissions: NSArray, resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
+		if #available(iOS 10.0, *) {
+			let center = UNUserNotificationCenter.current()
+			let permissions = mapPermissionsArray(array: permissions)
+			center.requestAuthorization(options: permissions) { granted, error in
+				if let error = error {
+					reject("PERMISSION-ERROR", error.localizedDescription, error)
+					return
+				}
+				resolve(granted)
+			}
+		} else {
+			resolve(nil)
 		}
 	}
 	

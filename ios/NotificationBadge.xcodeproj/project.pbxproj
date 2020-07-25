@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B8ED7EBD24CC599400094023 /* NotificationBadge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED7EBC24CC599400094023 /* NotificationBadge.swift */; };
 		B8ED7EBF24CC59C400094023 /* NotificationBadgeBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = B8ED7EBE24CC59C400094023 /* NotificationBadgeBridge.m */; };
+		B8ED7EC224CC6B6B00094023 /* UNAuthorizationOptions+NSArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8ED7EC124CC6B6B00094023 /* UNAuthorizationOptions+NSArray.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,7 @@
 		B8ED7EBB24CC599400094023 /* NotificationBadgeBridge.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationBadgeBridge.h; sourceTree = "<group>"; };
 		B8ED7EBC24CC599400094023 /* NotificationBadge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationBadge.swift; sourceTree = "<group>"; };
 		B8ED7EBE24CC59C400094023 /* NotificationBadgeBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationBadgeBridge.m; sourceTree = "<group>"; };
+		B8ED7EC124CC6B6B00094023 /* UNAuthorizationOptions+NSArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNAuthorizationOptions+NSArray.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +54,7 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				B8ED7EC124CC6B6B00094023 /* UNAuthorizationOptions+NSArray.swift */,
 				B8ED7EBE24CC59C400094023 /* NotificationBadgeBridge.m */,
 				B8ED7EBC24CC599400094023 /* NotificationBadge.swift */,
 				134814211AA4EA7D00B7C361 /* Products */,
@@ -118,6 +121,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8ED7EBD24CC599400094023 /* NotificationBadge.swift in Sources */,
+				B8ED7EC224CC6B6B00094023 /* UNAuthorizationOptions+NSArray.swift in Sources */,
 				B8ED7EBF24CC59C400094023 /* NotificationBadgeBridge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
