@@ -2,13 +2,18 @@
   "name": "react-native-notification-badge",
   "title": "React Native Notification Badge",
   "version": "1.0.0",
-  "description": "TODO",
-  "main": "index.js",
+  "description": "A notification badge count manager for React Native",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "README.md",
-    "android",
-    "index.js",
-    "ios",
+    "android/src",
+    "android/build.gradle",
+    "ios/NotificationBadge.xcodeproj/project.pbxproj",
+    "ios/NotificationBadge.swift",
+    "ios/NotificationBadgeBridge.h",
+    "ios/NotificationBadgeBridge.m",
+    "dist",
     "react-native-notification-badge.podspec"
   ],
   "scripts": {
@@ -20,7 +25,11 @@
     "baseUrl": "https://github.com/mrousavy/react-native-notification-badge"
   },
   "keywords": [
-    "react-native"
+    "react-native",
+    "notification",
+    "badge",
+    "count",
+    "native-module"
   ],
   "author": {
     "name": "Marc Rousavy",
@@ -34,7 +43,10 @@
     "react-native": ">=0.60.0-rc.0 <1.0.x"
   },
   "devDependencies": {
+    "@types/react-native": "^0.62.12",
     "react": "^16.9.0",
-    "react-native": "^0.61.5"
+    "react-native": "^0.61.5",
+    "eslint": "^7.1.0",
+    "typescript": "^3.9.3"
   }
 }
