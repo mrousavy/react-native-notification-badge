@@ -16,16 +16,25 @@ import {
   TextInput,
   TouchableNativeFeedback,
 } from 'react-native';
-import {getBadgeCount, setBadgeCount} from 'react-native-notification-badge';
+import {
+  getBadgeCount,
+  setBadgeCount,
+  getNotificationBadgeSetting,
+} from 'react-native-notification-badge';
 
 export default function App() {
   const [badgeCount, _setBadgeCount] = useState(undefined);
+  const [permissionStatus, setPermissionStatus] = useState('unknown');
   const [text, setText] = useState('');
 
   const loadBadgeCount = useCallback(async () => {
     const _badgeCount = await getBadgeCount();
     _setBadgeCount(_badgeCount);
   }, []);
+  const loadPermissionStatus = useCallback(async () => {
+    const _permissionStatus = await getNotificationBadgeSetting();
+    setPermissionStatus(_permissionStatus);
+  });
   const updateBadgeCount = useCallback(async () => {
     const number = parseInt(text, 10);
     if (typeof number === 'number' && !isNaN(number)) {
@@ -38,6 +47,9 @@ export default function App() {
   useEffect(() => {
     loadBadgeCount();
   }, [loadBadgeCount]);
+  useEffect(() => {
+    loadPermissionStatus();
+  }, [loadPermissionStatus]);
 
   return (
     <View style={styles.container}>
@@ -56,6 +68,9 @@ export default function App() {
           <Text>Set</Text>
         </TouchableNativeFeedback>
       </View>
+      <Text style={styles.permissionStatus}>
+        Badge Permission: {permissionStatus}
+      </Text>
     </View>
   );
 }
@@ -84,5 +99,8 @@ const styles = StyleSheet.create({
   },
   button: {
     fontSize: 16,
+  },
+  permissionStatus: {
+    marginTop: 20,
   },
 });
