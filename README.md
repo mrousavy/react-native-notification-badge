@@ -5,7 +5,7 @@
 A very simple notification badge count manager for React Native that just works.
 
 [![react-native-notification-badge](https://badge.fury.io/js/react-native-notification-badge.svg)](https://badge.fury.io/js/react-native-notification-badge)
-[![GitHub stars](https://img.shields.io/github/stars/mrousavy/react-native-notification-badge.svg?style=social&label=Star&maxAge=259000)](https://GitHub.com/mrousavy/react-native-notification-badge/stargazers/)
+[![GitHub stars](https://img.shields.io/github/stars/mrousavy/react-native-notification-badge.svg?style=social&label=Star&maxAge=259000)](https://github.com/mrousavy/react-native-notification-badge/stargazers/)
 [![GitHub followers](https://img.shields.io/github/followers/mrousavy.svg?style=social&label=Follow&maxAge=259000)](https://github.com/mrousavy?tab=followers)
 
 <a href='https://ko-fi.com/F1F8CLXG' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi2.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
