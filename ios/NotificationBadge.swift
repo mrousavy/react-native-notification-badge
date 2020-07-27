@@ -44,8 +44,10 @@ class NotificationBadge: NSObject {
 			let center = UNUserNotificationCenter.current()
 			center.getDeliveredNotifications { (notifications) in
 				let notificationsInThread = notifications.filter { $0.request.content.threadIdentifier == threadId }.map { $0.request.identifier }
-				center.removeDeliveredNotifications(withIdentifiers: notificationsInThread)
-				resolve(nil)
+				if notificationsInThread.count > 0 {
+					center.removeDeliveredNotifications(withIdentifiers: notificationsInThread)
+				}
+				resolve(notificationsInThread.count)
 			}
 		} else {
 			reject("UNSUPPORTED", "Notification Thread ID is only supported in iOS 10.0 or higher!", nil)

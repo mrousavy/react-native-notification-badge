@@ -65,6 +65,18 @@ Possible parameter values are: `['badge' | 'alert' | 'sound' | 'carPlay' | 'crit
 const granted = await requestNotificationPermissions(['badge', 'alert', 'sound'])
 ```
 
+### `removeNotificationsWithThreadId`
+
+**Remove all notification with the given Thread ID from the User's Notification Center.**
+
+> The Thread ID is a property in the APNS payload which can be used to group notifications in **iOS 10.0** or higher.
+
+Returns the count of notifications that were removed.
+
+```ts
+const removed = await removeNotificationsWithThreadId('group-chat-2')
+```
+
 
 ## Other
 
