@@ -38,6 +38,20 @@ class NotificationBadge: NSObject {
 		}
 	}
 	
+	@objc(removeNotificationsWithThreadId:resolver:rejecter:)
+	func removeNotificationsWithThreadId(_ threadId: String, resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
+		if #available(iOS 10.0, *) {
+			let center = UNUserNotificationCenter.current()
+			center.getDeliveredNotifications { (notifications) in
+				let notificationsInThread = notifications.filter { $0.request.content.threadIdentifier == threadId }.map { $0.request.identifier }
+				center.removeDeliveredNotifications(withIdentifiers: notificationsInThread)
+				resolve(nil)
+			}
+		} else {
+			reject("UNSUPPORTED", "Notification Thread ID is only supported in iOS 10.0 or higher!", nil)
+		}
+	}
+	
 	@objc(getNotificationBadgeSetting:rejecter:)
 	func getNotificationBadgeSetting(resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
 		if #available(iOS 10.0, *) {

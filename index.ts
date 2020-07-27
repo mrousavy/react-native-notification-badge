@@ -80,3 +80,17 @@ export function requestNotificationPermissions(permissions: NotificationPermissi
     throw new Error(`requestNotificationPermissions is not supported on ${Platform.OS}!`)
   }
 }
+
+/**
+ * Remove all notification with the given Thread ID from the User's Notification Center
+ * @param threadId The Thread ID to filter notifications by which shall be removed
+ * @example
+ * await removeNotificationsWithThreadId('group-chat-1')
+ */
+export function removeNotificationsWithThreadId(threadId: string): Promise<void> {
+  if (Platform.OS === 'ios') {
+    return NotificationBadge.removeNotificationsWithThreadId(threadId);
+  } else {
+    throw new Error(`removeNotificationsWithThreadId is not supported on ${Platform.OS}!`)
+  }
+}
