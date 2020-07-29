@@ -1,7 +1,7 @@
 {
   "name": "react-native-notification-badge",
   "title": "React Native Notification Badge",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A notification badge count manager for React Native",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
