@@ -37,10 +37,13 @@ class NotificationBadge: NSObject {
 			}
 		}
 	}
-	
+
 	@objc(removeNotificationsWithThreadId:resolver:rejecter:)
-	func removeNotificationsWithThreadId(_ threadId: String, resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
+	func removeNotificationsWithThreadId(_ threadId: NSString, resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
 		if #available(iOS 10.0, *) {
+			guard let threadId = threadId as String? else {
+				reject("INVALID_ARGUMENT", "Thread ID was not a valid String type!", nil)
+			}
 			let center = UNUserNotificationCenter.current()
 			center.getDeliveredNotifications { (notifications) in
 				let notificationsInThread = notifications.filter { $0.request.content.threadIdentifier == threadId }.map { $0.request.identifier }
@@ -53,9 +56,9 @@ class NotificationBadge: NSObject {
 			reject("UNSUPPORTED", "Notification Thread ID is only supported in iOS 10.0 or higher!", nil)
 		}
 	}
-	
+
 	@objc(getNotificationBadgeSetting:rejecter:)
-	func getNotificationBadgeSetting(resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
+	func getNotificationBadgeSetting(_ resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
 		if #available(iOS 10.0, *) {
 			let center = UNUserNotificationCenter.current()
 			center.getNotificationSettings { (settings) in
@@ -78,7 +81,7 @@ class NotificationBadge: NSObject {
 			resolve("enabled")
 		}
 	}
-	
+
 	@objc(requestNotificationPermissions:resolver:rejecter:)
 	func requestNotificationPermissions(_ permissions: NSArray, resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
 		if #available(iOS 10.0, *) {
@@ -95,7 +98,7 @@ class NotificationBadge: NSObject {
 			resolve(nil)
 		}
 	}
-	
+
 	@objc(setBadgeCount:resolver:rejecter:)
 	func setBadgeCount(_ badgeCount: NSNumber, resolver resolve: @escaping RCTPromiseResolveBlock, rejecter reject: @escaping RCTPromiseRejectBlock) -> Void {
 		runWithNotificationPermissions(
@@ -127,7 +130,7 @@ class NotificationBadge: NSObject {
 		}
 		return NSNumber(value: UIApplication.shared.applicationIconBadgeNumber)
 	}
-	
+
 	@objc
 	static func requiresMainQueueSetup() -> Bool {
 		return true
