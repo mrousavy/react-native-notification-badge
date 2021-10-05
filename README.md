@@ -10,7 +10,14 @@ A very simple notification badge count manager for React Native that just works.
 
 <a href='https://ko-fi.com/F1F8CLXG' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi2.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
 
+## Installation
+
+1. `npm install react-native-notification-badge` or `yarn add react-native-notification-badge`
+2. `cd ios && pod install`
+
 ## API
+
+**Note: All APIs throw if `Platform.OS !== 'ios'`!**. So wrap your calls with a `Platform.OS` check first.
 
 ### `getBadgeCount`
 
